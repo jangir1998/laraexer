@@ -30,8 +30,13 @@ Route::post('paypal', 'PaymentController@payWithpaypal');
 Route::get('status', 'PaymentController@getPaymentStatus');
 
 
-
 Route::get('/ok', function () {
     return "ok message return";
 });
 
+
+Route::get('/event', 'EventTestController@index');
+
+Route::get('/nevent', function(){
+    event(new TestEvent("this is message box from web php line"));
+});
