@@ -87,6 +87,8 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    //'from' => ['address' => 'raval_himanshu@live.in', 'name' => 'hemant jagir'],
+    
     /*
     |--------------------------------------------------------------------------
     | Markdown Mail Settings

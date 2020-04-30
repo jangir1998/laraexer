@@ -1,5 +1,9 @@
 <?php
 
+use Carbon\Carbon;
+use App\Events\TestEvent;
+use App\Mail\SendEmailMailable;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,3 +44,23 @@ Route::get('/event', 'EventTestController@index');
 Route::get('/nevent', function(){
     event(new TestEvent("this is message box from web php line"));
 });
+//------------------
+Route::get('/sendemail', function(){
+    Mail::to('new@gmail.com')->send(new SendEmailMailable);
+
+    return ('email is send successfully');
+});
+
+//Route::get('/mail', 'SendEmailController@testmail');   //sending mail use mailtrap
+
+//Route::get('/jobmail', 'SendEmailController@processQueue');    //job 
+
+Route::get('/jobsendemail', function(){
+    
+    //dispatch((new SendEmailJob());
+    $Job = (new SendEmailMailable())->delay(Carbon::now()->addSeconds(5));
+        dispatch($Job);
+    return ('email is send successfully');
+
+});
+
