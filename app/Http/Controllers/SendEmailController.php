@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Jobs\SendEmailJob;
 use Illuminate\Http\Request;
 use App\Mail\SendEmailMailable;
 use Illuminate\Support\Facades\Mail;
@@ -21,8 +22,10 @@ class SendEmailController extends Controller
     }
     public function processQueue()
     {
-        $emailJob = (new SendEmailMailable('Hemant jangir'))->delay(Carbon::now()->addSeconds(3));
-        dispatch($emailJob);
-        echo 'Mail Sent';
+        //dispatch(new SendEmailJob());
+        
+        $Job = (new SendEmailJob())->delay(Carbon::now()->addSeconds(5));
+        dispatch($Job);
+        return ('email is sended');
     }
-}
+} 

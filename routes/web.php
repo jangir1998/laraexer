@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 use App\Events\TestEvent;
+use App\Jobs\SendEmailJob;
 use App\Mail\SendEmailMailable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -51,16 +52,17 @@ Route::get('/sendemail', function(){
     return ('email is send successfully');
 });
 
+// Route::get('jobsendemail', function(){   
+//     //dispatch(new SendEmailJob());
+//     $Job = (new SendEmailJob())->delay(Carbon::now()->addSeconds(5));
+//         dispatch($Job);
+//     return ('email is send successfully');
+// });
+
 //Route::get('/mail', 'SendEmailController@testmail');   //sending mail use mailtrap
 
-//Route::get('/jobmail', 'SendEmailController@processQueue');    //job 
+Route::get('/jobmail', 'SendEmailController@processQueue');    //job 
 
-Route::get('/jobsendemail', function(){
-    
-    //dispatch((new SendEmailJob());
-    $Job = (new SendEmailMailable())->delay(Carbon::now()->addSeconds(5));
-        dispatch($Job);
-    return ('email is send successfully');
-
-});
-
+Route::get('/facadeex', function() {                       //Facades
+    return TestFacades::testingFacades();
+ });

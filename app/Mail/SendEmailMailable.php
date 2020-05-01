@@ -10,7 +10,8 @@ use Illuminate\Queue\SerializesModels;
 class SendEmailMailable extends Mailable
 {
     use Queueable, SerializesModels;
-    //public $name = 'hemant';
+
+    public $name;
     /**
      * Create a new message instance.
      *
@@ -18,7 +19,7 @@ class SendEmailMailable extends Mailable
      */
     public function __construct()
     {
-        //$this->name=$username;
+        $this->name='john';
     }
 
     /**
@@ -29,8 +30,8 @@ class SendEmailMailable extends Mailable
     public function build()
     {
         //return $this->view('welcome');
-        return $this->from('hemant@example.com')->view('welcome');
-        //return $this->from('hemant@example.com')->view('sendmail')->with(['inputs' => $this->name]);
+        //return $this->from('hemant@example.com')->view('sendmail');
+        return $this->from('hemant@example.com')->view('sendmail')->with(['name' => $this->name]);
     }
 }
 
